@@ -1,0 +1,37 @@
+name,continent,status,map_key,lat,lng,note,counts_as
+Colombia,South America,lived,Colombia,,,"Bogotá — home. Where the double degree happened.",1
+Brazil,South America,visited,Brazil,,,,1
+Panama,North America,visited,Panama,,,,1
+USA,North America,visited,United States of America,,,,1
+England,Europe,lived,United Kingdom,,,"London — a chapter of life abroad.",1
+Scotland,Europe,visited,United Kingdom,,,,1
+Wales,Europe,visited,United Kingdom,,,,1
+Spain,Europe,visited,Spain,,,,1
+Portugal,Europe,visited,Portugal,,,,1
+France,Europe,visited,France,,,,1
+Belgium,Europe,visited,Belgium,,,,1
+Netherlands,Europe,visited,Netherlands,,,,1
+Denmark,Europe,visited,Denmark,,,,1
+Germany,Europe,visited,Germany,,,,1
+Czechia,Europe,lived,Czechia,,,"Prague — current home. AI engineering at Phi Technologies.",1
+Austria,Europe,visited,Austria,,,,1
+Italy,Europe,visited,Italy,,,,1
+Hungary,Europe,visited,Hungary,,,,1
+Slovakia,Europe,visited,Slovakia,,,,1
+Russia,Europe,visited,Russia,,,,1
+Finland,Europe,visited,Finland,,,,1
+Switzerland,Europe,visited,Switzerland,,,,1
+Malta,Europe,visited,Malta,35.94,14.38,,1
+Turkey,Asia,visited,Turkey,,,,1
+Israel,Asia,visited,Israel,,,,1
+Palestine,Asia,visited,Palestine,31.95,35.23,,1
+Jordan,Asia,visited,Jordan,,,,1
+Thailand,Asia,visited,Thailand,,,,1
+Vietnam,Asia,visited,Vietnam,,,,1
+Philippines,Asia,visited,Philippines,,,,1
+Hong Kong,Asia,visited,Hong Kong,22.32,114.17,,1
+Taiwan,Asia,visited,Taiwan,,,,1
+Malaysia,Asia,visited,Malaysia,,,,1
+Singapore,Asia,visited,Singapore,1.35,103.82,,1
+South Korea,Asia,lived,South Korea,,,"Seoul — exchange semester at Seoul National University.",1
+Japan,Asia,visited,Japan,,,,1

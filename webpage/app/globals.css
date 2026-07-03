@@ -1,0 +1,149 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Warm Editorial palette ─────────────────────────────────── */
+:root {
+  --bg: #faf6ef;
+  --bg-elevated: #f3ecdf;
+  --fg: #211d19;
+  --fg-muted: #6f6558;
+  --accent: #c05b3d;
+  --accent-soft: #e7c3b4;
+  --line: #e4dac9;
+  --sand: #e8dfd0;
+  --sage: #7a8b74;
+  --card: #fffdf8;
+}
+
+/* "Evening" theme — deep warm charcoal, same terracotta heart */
+.dark {
+  --bg: #1b1815;
+  --bg-elevated: #252019;
+  --fg: #f0e9dd;
+  --fg-muted: #a89c8c;
+  --accent: #d97757;
+  --accent-soft: #6e4433;
+  --line: #38312a;
+  --sand: #322c25;
+  --sage: #8ba184;
+  --card: #23201b;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-line: var(--line);
+  --color-sand: var(--sand);
+  --color-sage: var(--sage);
+  --color-card: var(--card);
+
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ── Scroll-reveal (disabled for reduced motion) ────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ── World map ──────────────────────────────────────────────── */
+.map-country {
+  fill: var(--sand);
+  stroke: var(--bg);
+  stroke-width: 0.5;
+  transition: fill 0.3s ease;
+}
+.map-country[data-status='visited'] {
+  fill: var(--accent-soft);
+}
+.map-country[data-status='lived'] {
+  fill: var(--accent);
+}
+.map-country[data-status]:hover {
+  fill: var(--accent);
+  cursor: pointer;
+}
+.map-dot {
+  fill: var(--accent);
+  stroke: var(--bg);
+  stroke-width: 1;
+  cursor: pointer;
+}
+
+/* Draw-in on first view */
+@keyframes map-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.map-appear {
+  animation: map-fade 1.2s ease both;
+}
+
+/* ── Greeting crossfade ─────────────────────────────────────── */
+.greeting-swap {
+  display: inline-block;
+  animation: greeting-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes greeting-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

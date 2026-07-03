@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Builds
+.next/
+out/
+build/
+dist/
+.svelte-kit/
+
+# Generated (regenerated from countries.csv by `npm run gen`)
+shared/src/data/countries.gen.ts
+
+# Env
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/*
+!.vscode/extensions.json
+
+# Misc
+*.tsbuildinfo
+.turbo/

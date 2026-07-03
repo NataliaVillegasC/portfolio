@@ -1,0 +1,34 @@
+{
+  "name": "natalia-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Natalia Villegas Calderón — personal portfolio monorepo (webpage, CV, resume)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "shared",
+    "webpage",
+    "cv",
+    "resume"
+  ],
+  "scripts": {
+    "gen": "node shared/scripts/generate-countries.mjs",
+    "dev": "npm run dev:web",
+    "dev:web": "npm run gen && npm run dev -w webpage",
+    "dev:cv": "npm run gen && npm run dev -w cv",
+    "dev:resume": "npm run gen && npm run dev -w resume",
+    "build": "npm run gen && npm run build -w webpage && npm run build -w cv && npm run build -w resume",
+    "build:web": "npm run gen && npm run build -w webpage",
+    "build:cv": "npm run gen && npm run build -w cv",
+    "build:resume": "npm run gen && npm run build -w resume",
+    "lint": "npm run lint -w webpage",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "prettier-plugin-svelte": "^3.3.2"
+  }
+}

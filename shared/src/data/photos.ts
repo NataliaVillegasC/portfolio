@@ -1,0 +1,123 @@
+import { PhotoSchema, type Photo } from '../schemas'
+
+/**
+ * "Postcards" — the photo album.
+ *
+ * Every entry currently points at a generated placeholder in
+ * webpage/public/photos/. To swap in a real photo:
+ *   1. Drop the image into webpage/public/photos/ (e.g. seoul.jpg)
+ *   2. Update `file` below and set `placeholder: false`
+ *   3. Fix place/date/caption — the grid does the rest.
+ */
+export const photos: Photo[] = [
+  {
+    id: 'bogota',
+    file: 'placeholder-bogota.svg',
+    place: 'Bogotá',
+    country: 'Colombia',
+    date: '—',
+    caption: 'Where it all started.',
+    alt: 'Bogotá, Colombia',
+    span: 'wide',
+    placeholder: true,
+  },
+  {
+    id: 'seoul',
+    file: 'placeholder-seoul.svg',
+    place: 'Seoul',
+    country: 'South Korea',
+    date: '2024',
+    caption: 'Exchange semester at SNU.',
+    alt: 'Seoul, South Korea',
+    span: 'tall',
+    placeholder: true,
+  },
+  {
+    id: 'prague',
+    file: 'placeholder-prague.svg',
+    place: 'Prague',
+    country: 'Czechia',
+    date: '2026',
+    caption: 'Current home.',
+    alt: 'Prague, Czechia',
+    span: 'square',
+    placeholder: true,
+  },
+  {
+    id: 'london',
+    file: 'placeholder-london.svg',
+    place: 'London',
+    country: 'United Kingdom',
+    date: '—',
+    caption: 'A chapter abroad.',
+    alt: 'London, United Kingdom',
+    span: 'square',
+    placeholder: true,
+  },
+  {
+    id: 'tokyo',
+    file: 'placeholder-tokyo.svg',
+    place: 'Tokyo',
+    country: 'Japan',
+    date: '—',
+    caption: '',
+    alt: 'Tokyo, Japan',
+    span: 'tall',
+    placeholder: true,
+  },
+  {
+    id: 'istanbul',
+    file: 'placeholder-istanbul.svg',
+    place: 'Istanbul',
+    country: 'Turkey',
+    date: '—',
+    caption: '',
+    alt: 'Istanbul, Turkey',
+    span: 'square',
+    placeholder: true,
+  },
+  {
+    id: 'lisbon',
+    file: 'placeholder-lisbon.svg',
+    place: 'Lisbon',
+    country: 'Portugal',
+    date: '—',
+    caption: '',
+    alt: 'Lisbon, Portugal',
+    span: 'wide',
+    placeholder: true,
+  },
+  {
+    id: 'bangkok',
+    file: 'placeholder-bangkok.svg',
+    place: 'Bangkok',
+    country: 'Thailand',
+    date: '—',
+    caption: '',
+    alt: 'Bangkok, Thailand',
+    span: 'square',
+    placeholder: true,
+  },
+  {
+    id: 'helsinki',
+    file: 'placeholder-helsinki.svg',
+    place: 'Helsinki',
+    country: 'Finland',
+    date: '—',
+    caption: '',
+    alt: 'Helsinki, Finland',
+    span: 'square',
+    placeholder: true,
+  },
+  {
+    id: 'taipei',
+    file: 'placeholder-taipei.svg',
+    place: 'Taipei',
+    country: 'Taiwan',
+    date: '—',
+    caption: '',
+    alt: 'Taipei, Taiwan',
+    span: 'wide',
+    placeholder: true,
+  },
+].map((p) => PhotoSchema.parse(p))

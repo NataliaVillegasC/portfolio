@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#E8DFD0"/>
+      <stop offset="1" stop-color="#D8C9B0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#pg)"/>
+  <circle cx="200" cy="180" r="78" fill="#C05B3D" opacity="0.85"/>
+  <path d="M60 500 C60 380 140 330 200 330 C260 330 340 380 340 500 Z" fill="#C05B3D" opacity="0.85"/>
+  <text x="200" y="205" font-family="Georgia, serif" font-size="72" fill="#FAF6EF" text-anchor="middle">NV</text>
+  <text x="200" y="470" font-family="monospace" font-size="15" letter-spacing="3" fill="#211D19" opacity="0.55" text-anchor="middle">PORTRAIT COMING SOON</text>
+</svg>

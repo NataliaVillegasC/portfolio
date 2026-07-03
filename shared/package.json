@@ -1,0 +1,20 @@
+{
+  "name": "@natalia/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared data, schemas, and utilities for all portfolio apps",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "gen": "node scripts/generate-countries.mjs",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
