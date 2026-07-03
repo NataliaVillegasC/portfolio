@@ -29,16 +29,16 @@ export function ClosingNote() {
         </Reveal>
 
         <Reveal>
-          <div className="relative mx-auto h-64 w-64">
+          <div className="relative mx-auto h-80 w-80 sm:h-[22rem] sm:w-[22rem]">
             {miniPhotos.map((photo, i) => (
               <figure
                 key={photo.id}
-                className="polaroid absolute w-36"
+                className="polaroid absolute w-44 sm:w-48"
                 style={{
                   ['--rot' as string]: `${[-8, 5, -2][i]}deg`,
-                  top: `${[0, 40, 96][i]}px`,
-                  left: `${[8, 96, 40][i]}px`,
-                  zIndex: i,
+                  top: `${[0, 44, 108][i]}px`,
+                  left: `${[4, 116, 52][i]}px`,
+                  ['--z' as string]: i,
                 }}
               >
                 <img
@@ -47,7 +47,7 @@ export function ClosingNote() {
                   loading="lazy"
                   className="aspect-square w-full object-cover"
                 />
-                <figcaption className="font-hand py-1 text-center text-sm text-fg-muted">
+                <figcaption className="font-hand py-1 text-center text-base text-fg-muted">
                   {photo.place}
                 </figcaption>
               </figure>

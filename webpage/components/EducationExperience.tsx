@@ -2,11 +2,11 @@ import { education, experience, formatRange } from '@natalia/shared'
 import { Section } from './Section'
 import { Reveal } from './Reveal'
 
-function ColumnHeading({ children, ink }: { children: string; ink: string }) {
+function ColumnHeading({ children, ink, rotate }: { children: string; ink: string; rotate: number }) {
   return (
     <h3
       className={`stamp stamp-rect inline-flex px-5 py-2.5 text-sm font-bold ${ink}`}
-      style={{ ['--rot' as string]: '-2deg' }}
+      style={{ ['--rot' as string]: `${rotate}deg` }}
     >
       {children}
     </h3>
@@ -19,7 +19,7 @@ export function EducationExperience() {
       <div className="grid gap-14 lg:grid-cols-2 lg:gap-10">
         {/* ── Education ── */}
         <div>
-          <ColumnHeading ink="text-postal">Education</ColumnHeading>
+          <ColumnHeading ink="text-postal" rotate={-1.5}>Education</ColumnHeading>
           <div className="mt-8 space-y-8 border-l-2 border-dashed border-line pl-6">
             {education.map((item) => (
               <Reveal key={item.institution}>
@@ -60,7 +60,7 @@ export function EducationExperience() {
 
         {/* ── Experience ── */}
         <div>
-          <ColumnHeading ink="text-accent">Experience</ColumnHeading>
+          <ColumnHeading ink="text-accent" rotate={1.5}>Experience</ColumnHeading>
           <div className="mt-8 space-y-8 border-l-2 border-dashed border-line pl-6">
             {experience.map((job) => (
               <Reveal key={`${job.company}-${job.role}`}>

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import '@fontsource-variable/caveat'
 import '@fontsource-variable/fraunces'
-import '@fontsource-variable/inter'
-import '@fontsource/jetbrains-mono'
+import '@fontsource/courier-prime'
+import '@fontsource/courier-prime/400-italic.css'
+import '@fontsource/courier-prime/700.css'
 import './globals.css'
 import { profile, siteConfig } from '@natalia/shared'
 import { Header } from '@/components/Header'
@@ -38,7 +39,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="min-h-screen antialiased">
+      {/* suppressHydrationWarning: dev tools / extensions inject inline styles on <body> before hydration */}
+      <body className="min-h-screen antialiased" suppressHydrationWarning>
         <Header />
         {children}
         <Footer />

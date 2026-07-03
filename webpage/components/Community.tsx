@@ -15,10 +15,10 @@ export function Community() {
               style={{ transform: `rotate(${i % 2 === 0 ? -0.6 : 0.6}deg)` }}
             >
               <span
-                className={`stamp stamp-rect absolute -top-3 right-5 px-3 py-1 text-[10px] ${
+                className={`stamp stamp-rect absolute -top-3 right-5 max-w-[calc(100%-2.5rem)] px-3 py-1 text-[10px] ${
                   i % 2 === 0 ? 'text-accent' : 'text-postal'
                 }`}
-                style={{ ['--rot' as string]: '4deg' }}
+                style={{ ['--rot' as string]: `${i % 2 === 0 ? -2 : 2}deg` }}
               >
                 {item.role}
               </span>
