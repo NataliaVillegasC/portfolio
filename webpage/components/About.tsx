@@ -1,6 +1,7 @@
 import { profile } from '@natalia/shared'
 import { Section } from './Section'
 import { Reveal } from './Reveal'
+import { DoubleEngineer } from './DoubleEngineer'
 
 export function About() {
   return (
@@ -63,6 +64,8 @@ export function About() {
           </div>
         </Reveal>
       </div>
+
+      <DoubleEngineer />
     </Section>
   )
 }

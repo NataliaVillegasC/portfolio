@@ -129,3 +129,33 @@ export const SkillGroupSchema = z.object({
   items: z.array(z.string()),
 })
 export type SkillGroup = z.infer<typeof SkillGroupSchema>
+
+export const CertificationSchema = z.object({
+  title: z.string(),
+  issuer: z.string(),
+  issued: z.string(),
+  expires: z.string().optional(),
+  credentialId: z.string().optional(),
+  url: z.string().url().optional(),
+  /** true → placeholder entry Natalia still needs to replace */
+  draft: z.boolean(),
+})
+export type Certification = z.infer<typeof CertificationSchema>
+
+export const CommunitySchema = z.object({
+  org: z.string(),
+  role: z.string(),
+  period: z.string(),
+  description: z.string(),
+  url: z.string().url().optional(),
+  draft: z.boolean(),
+})
+export type Community = z.infer<typeof CommunitySchema>
+
+export const ImpactStatSchema = z.object({
+  value: z.string(),
+  label: z.string(),
+  /** Where the number comes from — shown as a small stamp-style source note */
+  source: z.string(),
+})
+export type ImpactStat = z.infer<typeof ImpactStatSchema>

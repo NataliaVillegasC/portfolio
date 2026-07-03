@@ -3,11 +3,7 @@ import { asset } from '@/lib/site'
 import { Section } from './Section'
 import { Reveal } from './Reveal'
 
-const spanClass = {
-  wide: 'sm:col-span-2',
-  tall: 'sm:row-span-2',
-  square: '',
-} as const
+const rotations = [-3, 2, -1.5, 3, -2.5, 1.5, -3.5, 2.5, -1, 3.5]
 
 export function Postcards() {
   const anyPlaceholder = photos.some((p) => p.placeholder)
@@ -15,37 +11,38 @@ export function Postcards() {
     <Section id="postcards" kicker="Postcards" title="Field notes from the road">
       <Reveal>
         <p className="max-w-2xl text-lg leading-relaxed text-fg-muted">
-          A few frames from thirty-six countries — kept, like good engineering, deliberately
-          minimal.
+          A few frames from thirty-six countries, taped in where they belong.
           {anyPlaceholder && (
-            <span className="mt-2 block font-mono text-xs text-sage">
-              (Placeholders for now — real photographs are on their way from a phone in Prague.)
+            <span className="font-hand mt-2 block text-xl text-sage">
+              (placeholders for now — the real photographs are still on a phone in Prague)
             </span>
           )}
         </p>
       </Reveal>
 
-      <div className="mt-10 grid auto-rows-[180px] grid-cols-2 gap-4 sm:auto-rows-[220px] sm:grid-cols-4">
-        {photos.map((photo) => (
-          <figure key={photo.id} className={`group relative ${spanClass[photo.span]}`}>
-            <div className="h-full overflow-hidden rounded-xl border border-line bg-bg-elevated">
+      <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+        {photos.map((photo, i) => (
+          <Reveal key={photo.id} className={photo.span === 'wide' ? 'sm:col-span-2' : ''}>
+            <figure
+              className="polaroid tape"
+              style={{
+                ['--rot' as string]: `${rotations[i % rotations.length]}deg`,
+                ['--tape-rot' as string]: `${(i % 2 === 0 ? -1 : 1) * (3 + (i % 3))}deg`,
+              }}
+            >
               <img
                 src={asset(`/photos/${photo.file}`)}
                 alt={photo.alt}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                className="aspect-[4/3] w-full object-cover"
               />
-            </div>
-            <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 rounded-b-xl bg-gradient-to-t from-black/60 to-transparent p-3 pt-8 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <span className="font-mono text-xs text-white">
+              <figcaption className="font-hand px-1 pb-1 pt-2 text-lg leading-tight text-fg-muted">
                 {photo.place}, {photo.country}
                 {photo.date !== '—' ? ` · ${photo.date}` : ''}
-              </span>
-              {photo.caption && (
-                <span className="block text-xs text-white/80">{photo.caption}</span>
-              )}
-            </figcaption>
-          </figure>
+                {photo.caption && <span className="block text-fg">{photo.caption}</span>}
+              </figcaption>
+            </figure>
+          </Reveal>
         ))}
       </div>
     </Section>

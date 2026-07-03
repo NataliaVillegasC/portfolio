@@ -2,32 +2,40 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ── Warm Editorial palette ─────────────────────────────────── */
+/* ── Traveler's Journal palette — day pages ─────────────────── */
 :root {
-  --bg: #faf6ef;
-  --bg-elevated: #f3ecdf;
-  --fg: #211d19;
-  --fg-muted: #6f6558;
-  --accent: #c05b3d;
-  --accent-soft: #e7c3b4;
-  --line: #e4dac9;
-  --sand: #e8dfd0;
-  --sage: #7a8b74;
-  --card: #fffdf8;
+  --bg: #f0e7d1; /* aged kraft paper */
+  --bg-elevated: #e9dec2;
+  --fg: #2f2718; /* sepia ink */
+  --fg-muted: #71634a;
+  --accent: #9e3b2d; /* rubber-stamp red */
+  --accent-soft: #cf9274; /* faded stamp ink */
+  --postal: #31628c; /* airmail blue */
+  --visa: #55714f; /* visa-stamp green */
+  --line: #d2c4a2;
+  --sand: #e4d8b8;
+  --sage: #55714f;
+  --card: #f9f3e0; /* a fresh page */
+  --tape: rgba(209, 178, 111, 0.45);
+  --polaroid: #fffdf4;
 }
 
-/* "Evening" theme — deep warm charcoal, same terracotta heart */
+/* Night train — same journal, read by lamplight */
 .dark {
-  --bg: #1b1815;
-  --bg-elevated: #252019;
-  --fg: #f0e9dd;
-  --fg-muted: #a89c8c;
-  --accent: #d97757;
-  --accent-soft: #6e4433;
-  --line: #38312a;
-  --sand: #322c25;
-  --sage: #8ba184;
-  --card: #23201b;
+  --bg: #211b11;
+  --bg-elevated: #2a2315;
+  --fg: #ece1c6;
+  --fg-muted: #a9987a;
+  --accent: #d0705c;
+  --accent-soft: #7c5340;
+  --postal: #7ba7cc;
+  --visa: #93ae8b;
+  --line: #463b25;
+  --sand: #362e1c;
+  --sage: #93ae8b;
+  --card: #2b2416;
+  --tape: rgba(209, 178, 111, 0.25);
+  --polaroid: #efe6cd;
 }
 
 @theme inline {
@@ -37,6 +45,8 @@
   --color-fg-muted: var(--fg-muted);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-postal: var(--postal);
+  --color-visa: var(--visa);
   --color-line: var(--line);
   --color-sand: var(--sand);
   --color-sage: var(--sage);
@@ -45,6 +55,7 @@
   --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter Variable', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  --font-hand: 'Caveat Variable', 'Bradley Hand', cursive;
 }
 
 html {
@@ -53,6 +64,15 @@ html {
 
 body {
   background-color: var(--bg);
+  /* faint paper fiber */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(120, 90, 40, 0.04) 0, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(120, 90, 40, 0.05) 0, transparent 45%),
+    linear-gradient(rgba(120, 90, 40, 0.025) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 28px;
   color: var(--fg);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -67,7 +87,125 @@ body {
   color: var(--bg);
 }
 
-/* ── Scroll-reveal (disabled for reduced motion) ────────────── */
+.font-hand {
+  font-family: var(--font-hand);
+}
+
+/* ── Rubber stamps ──────────────────────────────────────────── */
+.stamp {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.15rem;
+  border: 2.5px solid currentColor;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  opacity: 0.92;
+  transform: rotate(var(--rot, -3deg));
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.25s ease;
+  /* uneven ink coverage */
+  -webkit-mask-image: radial-gradient(
+    ellipse 120% 120% at 40% 30%,
+    black 55%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
+  mask-image: radial-gradient(ellipse 120% 120% at 40% 30%, black 55%, rgba(0, 0, 0, 0.82) 100%);
+}
+.stamp::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1.5px dashed currentColor;
+  border-radius: inherit;
+  opacity: 0.75;
+}
+.stamp:hover {
+  transform: rotate(0deg) scale(1.06);
+  opacity: 1;
+}
+.stamp-round {
+  border-radius: 999px;
+  aspect-ratio: 1;
+  padding: 1.1rem;
+}
+.stamp-rect {
+  border-radius: 10px;
+}
+
+/* ── Polaroids & tape ───────────────────────────────────────── */
+.polaroid {
+  background: var(--polaroid);
+  padding: 0.55rem 0.55rem 0.4rem;
+  box-shadow:
+    0 1px 3px rgba(47, 39, 24, 0.18),
+    0 8px 20px rgba(47, 39, 24, 0.12);
+  transform: rotate(var(--rot, -2deg));
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.03);
+  z-index: 5;
+}
+
+.tape {
+  position: relative;
+}
+.tape::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 96px;
+  height: 26px;
+  transform: translateX(-50%) rotate(var(--tape-rot, -2deg));
+  background: var(--tape);
+  box-shadow: 0 1px 2px rgba(47, 39, 24, 0.08);
+  z-index: 2;
+}
+
+/* ── Airmail edge (red/blue envelope stripes) ───────────────── */
+.airmail {
+  height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0 14px,
+    transparent 14px 28px,
+    var(--postal) 28px 42px,
+    transparent 42px 56px
+  );
+  opacity: 0.75;
+}
+
+/* ── Luggage tag ────────────────────────────────────────────── */
+.luggage-tag {
+  position: relative;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 12px 26px 12px 12px;
+  padding: 1.1rem 1.25rem 1rem 2.1rem;
+  transform: rotate(var(--rot, 0deg));
+}
+.luggage-tag::before {
+  content: '';
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  border: 2px solid var(--fg-muted);
+  background: var(--bg);
+}
+
+/* ── Scroll-reveal ──────────────────────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -84,7 +222,9 @@ body {
   html {
     scroll-behavior: auto;
   }
-  .reveal {
+  .reveal,
+  .stamp,
+  .polaroid {
     opacity: 1;
     transform: none;
     transition: none;
@@ -109,7 +249,7 @@ body {
   fill: var(--accent);
 }
 .map-country[data-status]:hover {
-  fill: var(--accent);
+  fill: var(--postal);
   cursor: pointer;
 }
 .map-dot {
@@ -118,8 +258,18 @@ body {
   stroke-width: 1;
   cursor: pointer;
 }
+.map-dot:hover {
+  fill: var(--postal);
+}
+.map-flag {
+  cursor: pointer;
+}
+.map-flag circle {
+  fill: var(--card);
+  stroke: var(--line);
+  stroke-width: 1;
+}
 
-/* Draw-in on first view */
 @keyframes map-fade {
   from {
     opacity: 0;

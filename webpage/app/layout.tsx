@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import '@fontsource-variable/caveat'
 import '@fontsource-variable/fraunces'
 import '@fontsource-variable/inter'
 import '@fontsource/jetbrains-mono'

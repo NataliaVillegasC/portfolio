@@ -14,7 +14,7 @@ export function Journey() {
   const entries = [...journey].reverse() // newest first
   return (
     <Section id="journey" kicker="The journey" title="Geography and career, one narrative">
-      <ol className="relative ml-3 border-l border-line">
+      <ol className="relative ml-3 border-l-2 border-dashed border-line">
         {entries.map((entry) => (
           <li key={`${entry.date}-${entry.title}`} className="relative pb-12 pl-8 last:pb-0">
             <span
