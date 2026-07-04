@@ -70,7 +70,7 @@ export function About() {
             </dl>
           </div>
           <MarginNote rotate={2} className="mt-8 hidden lg:block">
-            my mum still double-checks my math sometimes. she is usually right.
+            the first thing I learn in every new language is how to order coffee. priorities.
           </MarginNote>
         </Reveal>
       </div>

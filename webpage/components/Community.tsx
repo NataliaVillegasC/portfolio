@@ -9,7 +9,7 @@ export function Community() {
         {community.map((item, i) => (
           <Reveal key={item.org}>
             <article
-              className={`relative h-full rounded-xl border border-line bg-card p-7 ${
+              className={`paper-lift ${i % 2 === 1 ? 'paper-lift-alt ' : ''}relative h-full rounded-xl border border-line bg-card p-7 ${
                 item.draft ? 'opacity-60' : ''
               }`}
               style={{ transform: `rotate(${i % 2 === 0 ? -0.6 : 0.6}deg)` }}
@@ -35,7 +35,7 @@ export function Community() {
                 </a>
               )}
               {item.draft && (
-                <p className="font-hand mt-3 text-lg text-fg-muted">more to add here…</p>
+                <p className="font-hand hand-write mt-3 text-lg text-fg-muted">more to add here…</p>
               )}
             </article>
           </Reveal>

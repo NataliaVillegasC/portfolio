@@ -37,7 +37,7 @@ export function Postcards() {
                 loading="lazy"
                 className="develop aspect-[4/3] w-full object-cover"
               />
-              <figcaption className="font-hand px-1 pb-1 pt-2 text-lg leading-tight text-fg-muted">
+              <figcaption className="font-hand hand-write px-1 pb-1 pt-2 text-lg leading-tight text-fg-muted">
                 {photo.place}, {photo.country}
                 {photo.date !== '—' ? ` · ${photo.date}` : ''}
                 {photo.caption && <span className="block text-fg">{photo.caption}</span>}

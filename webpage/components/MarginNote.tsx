@@ -26,7 +26,7 @@ export function MarginNote({
           ['--tape-rot' as string]: `${tapeRotate}deg`,
         }}
       >
-        {children}
+        <span className="font-hand hand-write block">{children}</span>
       </aside>
     </Reveal>
   )

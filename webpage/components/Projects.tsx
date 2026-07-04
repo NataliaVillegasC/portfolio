@@ -22,11 +22,11 @@ export function Projects() {
   return (
     <Section id="projects" kicker="Selected work" title="Things I’ve built and shipped">
       <div className="grid gap-6 lg:grid-cols-2">
-        {flagships.map((p) => (
+        {flagships.map((p, i) => (
           <Reveal key={p.slug}>
             <Link
               href={`/projects/${p.slug}/`}
-              className="group flex h-full flex-col rounded-2xl border border-line bg-card p-8 shadow-sm transition-all hover:-translate-y-1 hover:border-accent hover:shadow-md"
+              className={`paper-lift ${i % 2 === 1 ? 'paper-lift-alt ' : ''}group flex h-full flex-col rounded-2xl border border-line bg-card p-8 shadow-sm hover:border-accent`}
             >
               <p className="font-mono text-xs text-fg-muted">{p.period}</p>
               <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight group-hover:text-accent">
@@ -43,9 +43,11 @@ export function Projects() {
       </div>
 
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {rest.map((p) => (
+        {rest.map((p, i) => (
           <Reveal key={p.slug}>
-            <article className="flex h-full flex-col rounded-2xl border border-line bg-card p-6">
+            <article
+              className={`paper-lift ${i % 2 === 1 ? 'paper-lift-alt ' : ''}flex h-full flex-col rounded-2xl border border-line bg-card p-6`}
+            >
               <div className="flex items-baseline justify-between gap-2">
                 <p className="font-mono text-xs text-fg-muted">{p.period}</p>
                 {p.draft && (

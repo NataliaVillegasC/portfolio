@@ -60,8 +60,8 @@ export function Journey() {
             industrial engineer, I took it as a personal challenge to find a flaw. I could not.
           </MarginNote>
           <MarginNote rotate={-1.5}>
-            Bogotá sits at <strong>2,640 m</strong>. Water boils at 91°C up there, which ruins tea
-            and improves stories.
+            In Bogotá we like to say we live <strong>2,600 meters</strong> closer to the stars. Up
+            there water boils at 91°C, which happens to be exactly what good coffee asks for.
           </MarginNote>
         </div>
       </div>

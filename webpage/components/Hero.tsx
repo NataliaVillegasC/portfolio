@@ -124,7 +124,7 @@ export function Hero() {
                 height={320}
                 className="develop h-auto w-full"
               />
-              <figcaption className="font-hand py-2 text-center text-xl text-fg-muted">
+              <figcaption className="font-hand hand-write py-2 text-center text-xl text-fg-muted">
                 {profile.location.city}, {new Date().getFullYear()}, probably near a train station
               </figcaption>
             </figure>

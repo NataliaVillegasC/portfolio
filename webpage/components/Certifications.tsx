@@ -15,7 +15,7 @@ export function Certifications() {
         {certifications.map((cert, i) => (
           <Reveal key={`${cert.title}-${i}`}>
             <article
-              className={`h-full rounded-xl border-2 border-dashed bg-card p-6 ${
+              className={`paper-lift ${i % 2 === 1 ? 'paper-lift-alt ' : ''}h-full rounded-xl border-2 border-dashed bg-card p-6 ${
                 cert.draft
                   ? 'border-line opacity-60'
                   : i % 2 === 0
@@ -44,7 +44,7 @@ export function Certifications() {
                   Show credential ↗
                 </a>
               )}
-              {cert.draft && <p className="font-hand mt-3 text-lg text-fg-muted">coming soon…</p>}
+              {cert.draft && <p className="font-hand hand-write mt-3 text-lg text-fg-muted">coming soon…</p>}
             </article>
           </Reveal>
         ))}

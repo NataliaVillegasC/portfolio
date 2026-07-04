@@ -15,15 +15,27 @@ export function Section({
   className?: string
 }) {
   return (
-    <section id={id} data-page className={`scroll-mt-20 py-20 sm:py-28 ${className}`}>
+    <section id={id} className={`scroll-mt-24 py-12 sm:py-16 ${className}`}>
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">{kicker}</p>
+          <p className="section-kicker font-mono text-xs uppercase tracking-[0.25em] text-accent">
+            {kicker}
+          </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
             {title}
           </h2>
+          <svg
+            className="ink-underline"
+            viewBox="0 0 176 12"
+            width="160"
+            height="11"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path pathLength={100} d="M2 7 C 24 2, 44 2, 66 6 S 108 11, 130 6 S 166 3, 174 7" />
+          </svg>
         </Reveal>
-        <div className="mt-10 sm:mt-14">{children}</div>
+        <div className="mt-8 sm:mt-10">{children}</div>
       </div>
     </section>
   )

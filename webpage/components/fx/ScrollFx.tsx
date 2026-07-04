@@ -24,40 +24,6 @@ export function ScrollFx() {
     const mm = gsap.matchMedia()
 
     mm.add('(prefers-reduced-motion: no-preference)', () => {
-      // Page turn: each section enters tilted back like a journal page
-      // being turned toward you, and settles flat as you scroll. Scrubbed,
-      // so scrolling back up folds the page again. The origin sits just
-      // below the section's top edge and the settle runs until the section
-      // is well into the viewport — otherwise all the rotation happens on
-      // the part of the page still below the fold and reads as nothing.
-      gsap.utils.toArray<HTMLElement>('[data-page]').forEach((page) => {
-        gsap.fromTo(
-          page,
-          {
-            rotationX: -32,
-            y: 130,
-            scale: 0.92,
-            opacity: 0.25,
-            transformOrigin: '50% 15%',
-            transformPerspective: 1400,
-            force3D: true,
-          },
-          {
-            rotationX: 0,
-            y: 0,
-            scale: 1,
-            opacity: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: page,
-              start: 'top 96%',
-              end: 'top 35%',
-              scrub: 0.5,
-            },
-          }
-        )
-      })
-
       // Parallax layers: journal depth — background stamps and the
       // polaroid drift at different speeds while the text holds still.
       gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) => {

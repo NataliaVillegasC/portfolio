@@ -47,7 +47,7 @@ export function ClosingNote() {
                   loading="lazy"
                   className="develop aspect-square w-full object-cover"
                 />
-                <figcaption className="font-hand py-1 text-center text-base text-fg-muted">
+                <figcaption className="font-hand hand-write py-1 text-center text-base text-fg-muted">
                   {photo.place}
                 </figcaption>
               </figure>
