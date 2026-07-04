@@ -19,7 +19,7 @@ export const projects: Project[] = [
     caseStudy: [
       {
         heading: 'The problem',
-        body: 'Portfolio decisions were being made from intuition and scattered spreadsheets. The organization needed a way to rank which digital initiatives to invest in next — grounded in data, explainable to stakeholders, and light enough to actually get used.',
+        body: 'Portfolio decisions were being made from intuition and scattered spreadsheets. The organization needed a way to rank which digital initiatives to invest in next: grounded in data, explainable to stakeholders, and light enough to actually get used.',
       },
       {
         heading: 'The approach',
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     period: 'March 2025',
     tech: ['Python', 'NLP', 'Supervised Learning', 'Flask', 'AWS'],
     summary:
-      'A large-scale NLP classifier that reads the news with a skeptical eye — 91% F1 over 57K+ articles, served through a real-time probability-based API.',
+      'A large-scale NLP classifier that reads the news with a skeptical eye: 91% F1 over 57K+ articles, served through a real-time probability-based API.',
     highlights: [
       'Built and optimized a large-scale NLP classifier over 57K+ articles, achieving a 91% F1-score.',
       'Integrated a Flask API for real-time, probability-based classification to simulate user-facing functionality.',
@@ -52,15 +52,15 @@ export const projects: Project[] = [
     caseStudy: [
       {
         heading: 'The problem',
-        body: 'Misinformation doesn’t announce itself. With 57,000+ news articles as raw material, the goal was to build a classifier that could flag likely misinformation at scale — and to do it honestly, reporting calibrated probabilities instead of confident-sounding labels.',
+        body: 'Misinformation doesn’t announce itself. With 57,000+ news articles as raw material, the goal was to build a classifier that could flag likely misinformation at scale, and to do it honestly, reporting calibrated probabilities instead of confident-sounding labels.',
       },
       {
         heading: 'The approach',
-        body: 'I engineered an NLP pipeline over the full corpus: text cleaning and feature extraction, then systematic comparison and optimization of supervised models against a held-out evaluation set. The final classifier reaches a 91% F1-score — strong enough to be useful, measured carefully enough to be trusted.',
+        body: 'I engineered an NLP pipeline over the full corpus: text cleaning and feature extraction, then systematic comparison and optimization of supervised models against a held-out evaluation set. The final classifier reaches a 91% F1-score: strong enough to be useful, measured carefully enough to be trusted.',
       },
       {
         heading: 'Making it usable',
-        body: 'A Flask API wraps the model for real-time classification, returning probability scores rather than binary verdicts — simulating exactly how a user-facing product would consume it, and deployed on AWS.',
+        body: 'A Flask API wraps the model for real-time classification, returning probability scores rather than binary verdicts, simulating exactly how a user-facing product would consume it, and deployed on AWS.',
       },
     ],
     draft: false,

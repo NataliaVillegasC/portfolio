@@ -12,12 +12,12 @@ import { Footer } from '@/components/Footer'
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.productionUrl),
   title: {
-    default: `${profile.name} — ${profile.title}`,
-    template: `%s — ${profile.shortName} Villegas`,
+    default: `${profile.name} · ${profile.title}`,
+    template: `%s · ${profile.shortName} Villegas`,
   },
   description: siteConfig.description,
   openGraph: {
-    title: `${profile.name} — ${profile.title}`,
+    title: `${profile.name} · ${profile.title}`,
     description: siteConfig.description,
     type: 'website',
     locale: 'en',

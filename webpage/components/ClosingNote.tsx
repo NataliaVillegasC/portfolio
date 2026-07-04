@@ -12,15 +12,15 @@ export function ClosingNote() {
         <Reveal>
           <div className="space-y-5 text-lg leading-relaxed text-fg-muted">
             <p>
-              I collect languages the way other people collect souvenirs —{' '}
-              {profile.languages.map((l) => l.name).join(', ')} so far — and I plan trips around
+              I collect languages the way other people collect souvenirs (
+              {profile.languages.map((l) => l.name).join(', ')} so far), and I plan trips around
               food markets, night trains, and whichever museum has the strangest permanent
               collection.
             </p>
             <p>
-              Travel and engineering feed the same habit: I like understanding how things work —
-              cities, supply chains, languages, neural networks — and I like them best when I get to
-              see them up close.
+              Travel and engineering feed the same habit: I like understanding how things work,
+              whether it is a city, a supply chain, a language or a neural network, and I like them
+              best when I get to see them up close.
             </p>
             <p className="font-hand text-2xl text-fg">
               currently: learning Czech, missing arepas, planning country #37.
@@ -45,7 +45,7 @@ export function ClosingNote() {
                   src={asset(`/photos/${photo.file}`)}
                   alt={photo.alt}
                   loading="lazy"
-                  className="aspect-square w-full object-cover"
+                  className="develop aspect-square w-full object-cover"
                 />
                 <figcaption className="font-hand py-1 text-center text-base text-fg-muted">
                   {photo.place}

@@ -15,7 +15,7 @@ export function Section({
   className?: string
 }) {
   return (
-    <section id={id} className={`scroll-mt-20 py-20 sm:py-28 ${className}`}>
+    <section id={id} data-page className={`scroll-mt-20 py-20 sm:py-28 ${className}`}>
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">{kicker}</p>

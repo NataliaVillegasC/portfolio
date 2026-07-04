@@ -5,7 +5,7 @@ export const profile = ProfileSchema.parse({
   shortName: 'Natalia',
   title: 'AI Engineer · Industrial & Systems Engineer',
   tagline:
-    'I build AI systems and optimize the world around them — currently from Prague, previously from Bogotá, Seoul, and London.',
+    'I build AI systems and optimize the world around them, these days from Prague, after Bogotá, Seoul, and London.',
   location: {
     city: 'Prague',
     country: 'Czechia',

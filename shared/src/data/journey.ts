@@ -12,7 +12,7 @@ export const journey: JourneyEntry[] = [
     country: 'Colombia',
     title: 'The double degree begins',
     description:
-      'Started B.Sc. degrees in Industrial Engineering and Systems & Computing Engineering at Los Andes University — two disciplines, one obsession: how systems work and how to make them better.',
+      'Started B.Sc. degrees in Industrial Engineering and Systems & Computing Engineering at Los Andes University. Two disciplines, one obsession: how systems work and how to make them better.',
     kind: 'education',
   },
   {
@@ -22,7 +22,7 @@ export const journey: JourneyEntry[] = [
     country: 'South Korea',
     title: 'Exchange at Seoul National University',
     description:
-      'A semester of MSc/PhD-level courses in algorithms, probabilistic graphical models, and data-driven decision-making — and a first home on a new continent.',
+      'A semester of MSc/PhD-level courses in algorithms, probabilistic graphical models, and data-driven decision-making, and a first home on a new continent.',
     kind: 'move',
   },
   {
@@ -32,7 +32,7 @@ export const journey: JourneyEntry[] = [
     country: 'Colombia',
     title: 'Teaching Advanced Optimization',
     description:
-      'Led Master’s-level office hours for 45 students — debugging Python/Gurobi models and co-designing assignments on integer programming and decomposition methods.',
+      'Led Master’s-level office hours for 45 students: debugging Python/Gurobi models and co-designing assignments on integer programming and decomposition methods.',
     kind: 'teaching',
   },
   {
@@ -42,7 +42,7 @@ export const journey: JourneyEntry[] = [
     country: 'USA',
     title: 'Code in Place section leader',
     description:
-      'Taught Stanford’s CS106A to 10+ international learners in weekly sections — 40+ code reviews and a reminder that teaching is the best way to learn.',
+      'Taught Stanford’s CS106A to 10+ international learners in weekly sections: 40+ code reviews and a reminder that teaching is the best way to learn.',
     kind: 'teaching',
   },
   {
@@ -52,7 +52,7 @@ export const journey: JourneyEntry[] = [
     country: 'Colombia',
     title: 'Full-stack developer at Los Andes',
     description:
-      'Built FastAPI + React tooling serving 15,000+ students and 600+ faculty, and replaced an external platform — saving the university USD 100K a year.',
+      'Built FastAPI + React tooling serving 15,000+ students and 600+ faculty, and replaced an external platform, saving the university USD 100K a year.',
     kind: 'work',
   },
   {
@@ -72,7 +72,7 @@ export const journey: JourneyEntry[] = [
     country: 'Colombia',
     title: 'Summa Cum Laude, twice',
     description:
-      'Graduated from both programs with the highest GPA in Industrial Engineering this century (4.89/5) — three Ramón de Zubiría Awards and five Academic Excellence Awards along the way.',
+      'Graduated from both programs with the highest GPA in Industrial Engineering this century (4.89/5), with three Ramón de Zubiría Awards and five Academic Excellence Awards along the way.',
     kind: 'milestone',
   },
 ].map((e) => JourneyEntrySchema.parse(e))

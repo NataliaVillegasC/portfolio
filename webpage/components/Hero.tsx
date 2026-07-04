@@ -61,7 +61,7 @@ const stamps: StampProps[] = [
 
 export function Hero() {
   return (
-    <section className="mx-auto max-w-6xl px-5 pb-20 pt-14 sm:px-8 sm:pt-20">
+    <section className="relative mx-auto max-w-6xl overflow-x-clip px-5 pb-20 pt-14 sm:px-8 sm:pt-20">
       <div className="flex flex-col-reverse items-center gap-12 lg:flex-row lg:items-start lg:gap-16">
         <Reveal className="flex-1">
           <LocalTime />
@@ -104,27 +104,31 @@ export function Hero() {
               aria-label="Sections"
               className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:max-w-2xl"
             >
-              {stamps.map((s) => (
-                <Stamp key={s.href} {...s} />
+              {stamps.map((s, i) => (
+                <Stamp key={s.href} {...s} index={i} />
               ))}
             </nav>
           </div>
         </Reveal>
 
         <Reveal className="w-56 shrink-0 sm:w-64">
-          <figure className="polaroid tape" style={{ ['--rot' as string]: '2.5deg' }}>
-            {/* Swap for a real portrait: drop portrait.jpg in public/ and update the src */}
-            <img
-              src={asset('/portrait.svg')}
-              alt={`Portrait of ${profile.name}`}
-              width={256}
-              height={320}
-              className="h-auto w-full"
-            />
-            <figcaption className="font-hand py-2 text-center text-xl text-fg-muted">
-              {profile.location.city}, {new Date().getFullYear()} — probably near a train station
-            </figcaption>
-          </figure>
+          {/* Parallax on a wrapper div so GSAP's transform never fights the
+              Reveal transition or the polaroid's CSS rotation */}
+          <div data-parallax="-24">
+            <figure className="polaroid tape" style={{ ['--rot' as string]: '2.5deg' }}>
+              {/* Swap for a real portrait: drop portrait.jpg in public/ and update the src */}
+              <img
+                src={asset('/portrait.svg')}
+                alt={`Portrait of ${profile.name}`}
+                width={256}
+                height={320}
+                className="develop h-auto w-full"
+              />
+              <figcaption className="font-hand py-2 text-center text-xl text-fg-muted">
+                {profile.location.city}, {new Date().getFullYear()}, probably near a train station
+              </figcaption>
+            </figure>
+          </div>
         </Reveal>
       </div>
     </section>

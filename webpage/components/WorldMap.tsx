@@ -107,7 +107,7 @@ export function WorldMap() {
     <Section id="map" kicker="The map" title="Thirty-six countries, four homes">
       <Reveal>
         <p className="max-w-2xl text-lg leading-relaxed text-fg-muted">
-          Every stamped shape is a story. <span className="text-fg">Click a country</span> — the
+          Every stamped shape is a story. <span className="text-fg">Click a country</span>; the
           flagged ones are the four I’ve called home.
         </p>
       </Reveal>

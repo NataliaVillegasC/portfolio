@@ -10,7 +10,7 @@ import { CertificationSchema, type Certification } from '../schemas'
  */
 export const certifications: Certification[] = [
   {
-    title: 'Code in Place — Section Leader',
+    title: 'Code in Place · Section Leader',
     issuer: 'Stanford University',
     issued: '2025-06',
     draft: false,

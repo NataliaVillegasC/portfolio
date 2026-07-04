@@ -11,10 +11,11 @@ export function Postcards() {
     <Section id="postcards" kicker="Postcards" title="Field notes from the road">
       <Reveal>
         <p className="max-w-2xl text-lg leading-relaxed text-fg-muted">
-          A few frames from thirty-six countries, taped in where they belong.
+          A few frames from thirty-six countries, taped in where they belong. Give them a second,
+          instant film takes its time to develop.
           {anyPlaceholder && (
             <span className="font-hand mt-2 block text-xl text-sage">
-              (placeholders for now — the real photographs are still on a phone in Prague)
+              (placeholders for now, the real photographs are still on a phone in Prague)
             </span>
           )}
         </p>
@@ -34,7 +35,7 @@ export function Postcards() {
                 src={asset(`/photos/${photo.file}`)}
                 alt={photo.alt}
                 loading="lazy"
-                className="aspect-[4/3] w-full object-cover"
+                className="develop aspect-[4/3] w-full object-cover"
               />
               <figcaption className="font-hand px-1 pb-1 pt-2 text-lg leading-tight text-fg-muted">
                 {photo.place}, {photo.country}

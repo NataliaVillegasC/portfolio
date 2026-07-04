@@ -31,7 +31,7 @@ export const experience: Experience[] = [
   },
   {
     company: 'Los Andes University',
-    role: 'Teaching Assistant — Advanced Optimization',
+    role: 'Teaching Assistant · Advanced Optimization',
     location: 'Bogotá, Colombia',
     start: '2025-01',
     end: '2025-05',
@@ -42,7 +42,7 @@ export const experience: Experience[] = [
   },
   {
     company: 'Stanford University (Online)',
-    role: 'Section Leader — Code in Place',
+    role: 'Section Leader · Code in Place',
     location: 'Remote',
     start: '2025-04',
     end: '2025-06',

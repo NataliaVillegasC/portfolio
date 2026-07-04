@@ -9,10 +9,14 @@ import { Community } from '@/components/Community'
 import { Toolbox } from '@/components/Toolbox'
 import { Postcards } from '@/components/Postcards'
 import { ClosingNote } from '@/components/ClosingNote'
+import { ScrollFx } from '@/components/fx/ScrollFx'
+import { FlightProgress } from '@/components/fx/FlightProgress'
 
 export default function HomePage() {
   return (
     <main>
+      <ScrollFx />
+      <FlightProgress />
       <Hero />
       <About />
       <Journey />

@@ -29,7 +29,7 @@ export const impact: ImpactStat[] = [
   },
   {
     value: '4.89/5',
-    label: 'GPA — highest this century',
+    label: 'GPA · highest this century',
     source: 'Industrial Eng., Los Andes',
   },
 ].map((s) => ImpactStatSchema.parse(s))

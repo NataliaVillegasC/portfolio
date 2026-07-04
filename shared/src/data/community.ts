@@ -11,7 +11,7 @@ export const community: Community[] = [
     role: 'Section Leader',
     period: 'Apr – Jun 2025',
     description:
-      'Led 10+ international learners through Stanford’s CS106A in weekly live sections — hands-on labs, 40+ code reviews, and the joy of watching someone’s first program run.',
+      'Led 10+ international learners through Stanford’s CS106A in weekly live sections: hands-on labs, 40+ code reviews, and the joy of watching someone’s first program run.',
     url: 'https://codeinplace.stanford.edu',
     draft: false,
   },

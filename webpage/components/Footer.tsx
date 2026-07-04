@@ -10,7 +10,7 @@ export function Footer() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">Contact</p>
           <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Wherever in the world you’re reading this — let’s talk.
+            Wherever in the world you’re reading this, let’s talk.
           </h2>
           <a
             href={`mailto:${profile.email}`}

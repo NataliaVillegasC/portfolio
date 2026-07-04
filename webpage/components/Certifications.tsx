@@ -8,7 +8,7 @@ export function Certifications() {
     <Section id="certifications" kicker="Credentials" title="Licenses & Certifications">
       {anyDraft && (
         <p className="font-hand -mt-6 mb-8 text-xl text-fg-muted">
-          (a few visa pages still being stamped — the full list is on its way)
+          (a few visa pages still being stamped, the full list is on its way)
         </p>
       )}
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

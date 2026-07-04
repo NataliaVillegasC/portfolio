@@ -5,14 +5,14 @@ const degrees = [
   {
     kicker: 'Systems & Computing Engineering',
     title: 'Software & AI',
-    body: 'I build production systems end to end — RAG pipelines, OCR microservices, full-stack apps, ML models that ship. Code that survives contact with real users.',
+    body: 'I build production systems end to end: RAG pipelines, OCR microservices, full-stack apps, ML models that ship. Code that survives contact with real users.',
     tags: ['Python', 'AI/ML', 'React', 'FastAPI', 'AWS'],
     ink: 'text-postal border-postal',
   },
   {
     kicker: 'Industrial Engineering',
     title: 'Optimization & Decisions',
-    body: 'The discipline of making complex systems work better. I specialized in optimization, statistics, and data-driven decision-making — turning messy reality into models that help people choose well.',
+    body: 'The discipline of making complex systems work better. I specialized in optimization, statistics, and data-driven decision-making: turning messy reality into models that help people choose well.',
     tags: ['Optimization', 'Gurobi', 'Statistics', 'Data Analytics', 'BI'],
     ink: 'text-accent border-accent',
   },
@@ -26,7 +26,7 @@ export function DoubleEngineer() {
           Two degrees, one engineer
         </p>
         <h3 className="mt-3 max-w-2xl font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-          Summa Cum Laude twice — because systems deserve to be both built well and designed well.
+          Summa Cum Laude twice, because systems deserve to be both designed well and built well.
         </h3>
       </Reveal>
 
@@ -58,7 +58,7 @@ export function DoubleEngineer() {
 
       <Reveal>
         <p className="font-hand mx-auto mt-8 max-w-xl text-center text-2xl text-fg-muted">
-          where they meet: I don’t just build systems — I build them to be measurably better.
+          where they meet: I don’t just build systems, I build them to be measurably better.
         </p>
       </Reveal>
 

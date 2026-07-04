@@ -2,6 +2,7 @@ import { profile } from '@natalia/shared'
 import { Section } from './Section'
 import { Reveal } from './Reveal'
 import { DoubleEngineer } from './DoubleEngineer'
+import { MarginNote } from './MarginNote'
 
 export function About() {
   return (
@@ -10,21 +11,27 @@ export function About() {
         <Reveal>
           <div className="space-y-5 text-lg leading-relaxed text-fg-muted">
             <p>
-              I’m an engineer twice over — Industrial, and Systems &amp; Computing — and I finished
-              both degrees <em className="text-fg">Summa Cum Laude</em>, with the highest GPA my
-              Industrial Engineering program has seen this century. What that really means: I don’t
-              choose between understanding systems and building them. I do both, carefully.
+              Engineering started at home. My mum is a civil engineer, one of the few women in her
+              cohort, and she would sit with my sister and me explaining mathematics until it
+              stopped being homework and became a language we spoke at the kitchen table. I ended
+              up speaking it fluently: two degrees, Industrial and Systems &amp; Computing, both
+              finished <em className="text-fg">Summa Cum Laude</em>, with the highest GPA my
+              Industrial Engineering program has seen this century.
             </p>
             <p>
-              I’ve visited 36 countries and made a home in four — Bogotá, where it all started;
-              Seoul, for graduate-level coursework at SNU; London; and now Prague, where I work as
-              an AI engineer. Moving through cultures taught me the same lesson optimization did:
-              context is everything, and the elegant solution is usually the one that respects it.
+              Industrial Engineering taught me to read the world as systems: decisions, processes
+              and resources, all connected, all improvable. Programming arrived later and felt,
+              honestly, like magic. My first real project drew the zodiac constellation for
+              whatever birthday you typed in, and the moment it worked I understood that code turns
+              ideas into things people can actually touch. I never really stopped after that.
             </p>
             <p>
-              These days I build AI systems in production — RAG pipelines, OCR services, models that
-              forecast and recommend — and I care as much about the decision a system enables as the
-              architecture underneath it.
+              Since then I have visited 36 countries and made a home in four: Bogotá, where
+              everything started; Seoul, for graduate coursework at SNU; London; and now Prague,
+              where I build AI systems in production, from RAG pipelines and OCR services to models
+              that forecast and recommend. Moving between cultures taught me the same lesson
+              optimization did: context is everything, and the elegant solution is the one that
+              respects it.
             </p>
           </div>
         </Reveal>
@@ -44,7 +51,7 @@ export function About() {
               <div>
                 <dt className="text-fg-muted">Education</dt>
                 <dd className="mt-0.5 font-medium">
-                  B.Sc. ×2, Los Andes University — Summa Cum Laude, GPA 4.89/5
+                  B.Sc. ×2, Los Andes University · Summa Cum Laude · GPA 4.89/5
                 </dd>
               </div>
               <div>
@@ -62,6 +69,9 @@ export function About() {
               </div>
             </dl>
           </div>
+          <MarginNote rotate={2} className="mt-8 hidden lg:block">
+            my mum still double-checks my math sometimes. she is usually right.
+          </MarginNote>
         </Reveal>
       </div>
 
