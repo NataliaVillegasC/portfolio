@@ -7,7 +7,8 @@ import { profile } from '@natalia/shared'
  * The journal's leather cover: the site opens on it, closed, and stays
  * closed until the reader taps (or presses a key, or tries to scroll).
  * The opening itself is pure CSS (see .journal-cover in globals.css):
- * the cover turns first, then two paper pages follow a beat behind.
+ * the cover turns first, then three paper pages cascade behind it,
+ * each starting sooner and turning faster than the one before.
  *
  * The inline script runs during HTML parse, before first paint, so the
  * cover is there from the very first frame: once per session, never for
@@ -32,7 +33,15 @@ export function CoverOpen() {
 
     const finish = () => {
       clearTimeout(timer)
+      lastPage?.removeEventListener('animationend', onAnimationEnd)
       html.classList.remove('show-cover', 'cover-opening')
+    }
+
+    // the last page also animates its sheen (::after), which fires
+    // animationend on the same element — only the turn ends the overlay
+    const onAnimationEnd = (e: Event) => {
+      if ((e as AnimationEvent).animationName !== 'page-turn') return
+      finish()
     }
 
     const open = () => {
@@ -42,7 +51,7 @@ export function CoverOpen() {
         sessionStorage.setItem('journal-cover-played', '1')
       } catch {}
       // the last page turning is what ends the overlay
-      lastPage?.addEventListener('animationend', finish, { once: true })
+      lastPage?.addEventListener('animationend', onAnimationEnd)
       // fallback in case animationend never fires
       timer = setTimeout(finish, 3000)
     }
@@ -54,7 +63,7 @@ export function CoverOpen() {
 
     return () => {
       clearTimeout(timer)
-      lastPage?.removeEventListener('animationend', finish)
+      lastPage?.removeEventListener('animationend', onAnimationEnd)
       window.removeEventListener('pointerdown', open)
       window.removeEventListener('keydown', open)
       window.removeEventListener('wheel', open)
@@ -67,6 +76,7 @@ export function CoverOpen() {
       <script dangerouslySetInnerHTML={{ __html: coverScript }} />
       <div className="journal-cover" aria-hidden="true">
         <div className="cover-page cover-page-under" />
+        <div className="cover-page cover-page-mid" />
         <div className="cover-page cover-page-top" />
         <div className="cover-face">
           <div className="cover-frame">
