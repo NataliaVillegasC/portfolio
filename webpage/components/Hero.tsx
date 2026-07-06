@@ -114,7 +114,17 @@ export function Hero() {
         <Reveal className="w-56 shrink-0 sm:w-64">
           {/* Parallax on a wrapper div so GSAP's transform never fights the
               Reveal transition or the polaroid's CSS rotation */}
-          <div data-parallax="-24">
+          <div data-parallax="-24" className="relative">
+            {/* arrival stamp, half on the photo like a border officer in a hurry */}
+            <span aria-hidden className="absolute -bottom-5 -left-7 z-10">
+              <span
+                className="stamp stamp-round stamp-sm text-[9px] text-visa"
+                style={{ ['--rot' as string]: '-12deg', ['--i' as string]: 4 }}
+              >
+                <span className="font-bold">Arrived</span>
+                <span className="opacity-80">Prague · CZ</span>
+              </span>
+            </span>
             <figure className="polaroid tape" style={{ ['--rot' as string]: '2.5deg' }}>
               {/* Swap for a real portrait: drop portrait.jpg in public/ and update the src */}
               <img

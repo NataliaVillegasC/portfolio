@@ -7,7 +7,8 @@
   --bg: #f0e7d1; /* aged kraft paper */
   --bg-elevated: #e9dec2;
   --fg: #2f2718; /* sepia ink */
-  --fg-muted: #71634a;
+  /* darkened from #71634a so muted ink clears WCAG AA on every paper tone */
+  --fg-muted: #6b5d45;
   --accent: #9e3b2d; /* rubber-stamp red */
   --accent-soft: #cf9274; /* faded stamp ink */
   --postal: #31628c; /* airmail blue */
@@ -195,6 +196,13 @@ body {
   border-radius: 999px;
   aspect-ratio: 1;
   padding: 1.1rem;
+}
+/* pocket-size stamp for postmarks and margin details */
+.stamp-sm,
+.stamp-sm.stamp-round {
+  padding: 0.65rem;
+  gap: 0.05rem;
+  border-width: 2px;
 }
 .stamp-rect {
   border-radius: 10px;
@@ -478,6 +486,473 @@ body {
   rotate: -0.5deg;
 }
 
+/* ── Journal cover — the notebook opens when you arrive ────────── */
+/* Hidden by default (no-JS safe). An inline script in the page adds
+   .show-cover to <html> before first paint, once per session, never
+   under prefers-reduced-motion. Pure CSS runs the opening; a tiny
+   client component only removes the class afterwards (or on click). */
+.journal-cover {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  perspective: 1500px;
+}
+html.show-cover {
+  overflow: hidden;
+}
+html.show-cover .journal-cover {
+  display: block;
+  cursor: pointer;
+}
+/* the page underneath starts dim, brightens as the cover lifts */
+.journal-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #14100a;
+  opacity: 0.45;
+  animation: cover-shade 1.5s cubic-bezier(0.72, 0, 0.3, 1) 0.55s forwards;
+}
+.cover-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(120% 100% at 28% 18%, rgba(255, 226, 170, 0.1), transparent 55%),
+    radial-gradient(130% 120% at 80% 95%, rgba(0, 0, 0, 0.45), transparent 60%),
+    #372a18;
+  transform-origin: 0% 50%;
+  backface-visibility: hidden;
+  will-change: transform;
+  animation: cover-open 1.5s cubic-bezier(0.72, 0, 0.3, 1) 0.55s forwards;
+}
+/* spine shading along the bound edge */
+.cover-face::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3.5rem;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);
+}
+@keyframes cover-open {
+  to {
+    transform: rotateY(-106deg);
+  }
+}
+@keyframes cover-shade {
+  to {
+    opacity: 0;
+  }
+}
+.cover-frame {
+  position: absolute;
+  inset: 1.4rem;
+  border: 2px solid rgba(201, 168, 106, 0.5);
+  outline: 1px solid rgba(201, 168, 106, 0.28);
+  outline-offset: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: 2rem;
+  text-align: center;
+  color: #d9c49c;
+}
+.cover-kicker,
+.cover-hint {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.cover-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-shadow:
+    0 -1px 0 rgba(0, 0, 0, 0.65),
+    0 1px 0 rgba(255, 236, 200, 0.14);
+}
+.cover-sub {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.cover-seal {
+  margin-top: 0.6rem;
+  width: 5.4rem;
+  height: 5.4rem;
+  border-radius: 999px;
+  border: 2px solid rgba(201, 168, 106, 0.55);
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  color: rgba(217, 196, 156, 0.9);
+  box-shadow:
+    inset 0 0 0 4px #372a18,
+    inset 0 0 0 5px rgba(201, 168, 106, 0.35);
+}
+.cover-hint {
+  position: absolute;
+  bottom: 1.2rem;
+  letter-spacing: 0.22em;
+}
+
+/* ── Boarding-pass tickets (flagship projects) ─────────────────── */
+.ticket {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(47, 39, 24, 0.1);
+}
+@media (min-width: 640px) {
+  .ticket {
+    flex-direction: row;
+  }
+}
+/* Perforation between main stub and tear-off stub: dashed rule plus
+   two die-cut notches (page-colored circles clipped by the ticket). */
+.ticket-perf {
+  position: relative;
+  flex: none;
+  border-top: 2px dashed var(--line);
+}
+.ticket-perf::before,
+.ticket-perf::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  top: -11px;
+}
+.ticket-perf::before {
+  left: -10px;
+}
+.ticket-perf::after {
+  right: -10px;
+}
+@media (min-width: 640px) {
+  .ticket-perf {
+    border-top: 0;
+    border-left: 2px dashed var(--line);
+  }
+  .ticket-perf::before,
+  .ticket-perf::after {
+    left: -11px;
+    right: auto;
+  }
+  .ticket-perf::before {
+    top: -10px;
+  }
+  .ticket-perf::after {
+    top: auto;
+    bottom: -10px;
+  }
+}
+/* rotated label riding the stub edge */
+.ticket-vert {
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  opacity: 0.8;
+}
+/* circular ink-stamp CTA; presses down when the ticket is hovered */
+.ticket-stamp {
+  position: relative;
+  width: 5.4rem;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 2px solid var(--postal);
+  color: var(--postal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  rotate: -8deg;
+  opacity: 0.9;
+  transition:
+    scale 0.18s ease,
+    rotate 0.18s ease,
+    opacity 0.18s ease;
+  -webkit-mask-image: radial-gradient(
+    ellipse 120% 120% at 40% 30%,
+    black 55%,
+    rgba(0, 0, 0, 0.82) 100%
+  );
+  mask-image: radial-gradient(ellipse 120% 120% at 40% 30%, black 55%, rgba(0, 0, 0, 0.82) 100%);
+}
+.ticket-stamp::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1.5px dashed currentColor;
+  border-radius: inherit;
+  opacity: 0.7;
+}
+.ticket:hover .ticket-stamp {
+  scale: 0.9;
+  rotate: -4deg;
+  opacity: 1;
+}
+/* barcode strip — prints itself left to right on reveal */
+.barcode {
+  height: 2rem;
+  color: var(--fg);
+  opacity: 0.8;
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0 2px,
+    transparent 2px 5px,
+    currentColor 5px 6px,
+    transparent 6px 10px,
+    currentColor 10px 13px,
+    transparent 13px 15px,
+    currentColor 15px 16px,
+    transparent 16px 21px
+  );
+}
+.reveal.is-visible .barcode {
+  -webkit-mask-image: linear-gradient(90deg, #000 55%, transparent 65%);
+  mask-image: linear-gradient(90deg, #000 55%, transparent 65%);
+  -webkit-mask-size: 250% 100%;
+  mask-size: 250% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: hand-write 0.8s ease-out 0.35s backwards;
+}
+
+/* ── Luggage-tag skill badges ───────────────────────────────────── */
+.skill-tag {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 0.65rem;
+  padding: 1.15rem 0.95rem 0.8rem;
+  rotate: var(--rot, 0deg);
+  transform-origin: 50% -1rem;
+  box-shadow: 0 2px 6px rgba(47, 39, 24, 0.08);
+}
+/* the string it hangs from */
+.skill-tag::before {
+  content: '';
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  width: 1.5px;
+  height: 1rem;
+  background: var(--fg-muted);
+  opacity: 0.65;
+}
+/* the punched hole */
+.skill-tag::after {
+  content: '';
+  position: absolute;
+  top: 0.3rem;
+  left: 50%;
+  translate: -50% 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  border: 2px solid var(--fg-muted);
+  background: var(--bg);
+}
+/* tags drop onto the desk one after another */
+@keyframes tag-drop {
+  0% {
+    opacity: 0;
+    translate: 0 -26px;
+  }
+  60% {
+    opacity: 1;
+    translate: 0 5px;
+  }
+  80% {
+    translate: 0 -2px;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+.reveal.is-visible .skill-tag {
+  animation: tag-drop 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 50ms);
+}
+/* and swing on their string when touched */
+@keyframes tag-swing {
+  0%,
+  100% {
+    rotate: var(--rot, 0deg);
+  }
+  30% {
+    rotate: calc(var(--rot, 0deg) + 5deg);
+  }
+  60% {
+    rotate: calc(var(--rot, 0deg) - 3deg);
+  }
+  80% {
+    rotate: calc(var(--rot, 0deg) + 1.5deg);
+  }
+}
+.skill-tag:hover {
+  animation: tag-swing 0.8s ease-in-out;
+}
+
+/* ── Washi tape section dividers ────────────────────────────────── */
+.washi-wrap {
+  display: flex;
+  justify-content: center;
+  height: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 5;
+}
+.washi {
+  width: 11rem;
+  height: 1.6rem;
+  translate: 0 -50%;
+  rotate: var(--rot, -2deg);
+  background: var(--washi-tint, var(--tape));
+  opacity: 0.85;
+  clip-path: polygon(2% 0, 98% 6%, 100% 45%, 97% 100%, 3% 94%, 0 55%);
+  box-shadow: 0 1px 2px rgba(47, 39, 24, 0.12);
+}
+.washi-blue {
+  --washi-tint: rgba(49, 98, 140, 0.3);
+}
+.washi-green {
+  --washi-tint: rgba(85, 113, 79, 0.28);
+}
+
+/* ── Postcard footer + torn receipt ─────────────────────────────── */
+.postcard {
+  position: relative;
+  background: var(--card);
+  border: 8px solid transparent;
+  border-image: repeating-linear-gradient(
+      -45deg,
+      var(--accent) 0 12px,
+      var(--card) 12px 24px,
+      var(--postal) 24px 36px,
+      var(--card) 36px 48px
+    )
+    8;
+  box-shadow:
+    0 2px 6px rgba(47, 39, 24, 0.12),
+    0 14px 34px rgba(47, 39, 24, 0.12);
+  rotate: -0.4deg;
+}
+/* postage stamp: physically printed paper, so its inks stay fixed
+   in both themes (the paper itself is var(--polaroid), always light) */
+.postage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  width: 5.5rem;
+  height: 6.5rem;
+  padding: 0.5rem;
+  background: var(--polaroid);
+  border: 2px dashed var(--line);
+  color: #31628c;
+  rotate: 2deg;
+  box-shadow: 0 1px 3px rgba(47, 39, 24, 0.15);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.postage .plane {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+.torn-receipt {
+  background: var(--bg-elevated);
+  clip-path: polygon(
+    0 100%,
+    0 12px,
+    2.5% 0,
+    5% 12px,
+    7.5% 0,
+    10% 12px,
+    12.5% 0,
+    15% 12px,
+    17.5% 0,
+    20% 12px,
+    22.5% 0,
+    25% 12px,
+    27.5% 0,
+    30% 12px,
+    32.5% 0,
+    35% 12px,
+    37.5% 0,
+    40% 12px,
+    42.5% 0,
+    45% 12px,
+    47.5% 0,
+    50% 12px,
+    52.5% 0,
+    55% 12px,
+    57.5% 0,
+    60% 12px,
+    62.5% 0,
+    65% 12px,
+    67.5% 0,
+    70% 12px,
+    72.5% 0,
+    75% 12px,
+    77.5% 0,
+    80% 12px,
+    82.5% 0,
+    85% 12px,
+    87.5% 0,
+    90% 12px,
+    92.5% 0,
+    95% 12px,
+    97.5% 0,
+    100% 12px,
+    100% 100%
+  );
+}
+
+/* tape corners lift slightly when a taped photo is touched */
+.tape::before {
+  transition: transform 0.3s ease;
+}
+.tape:hover::before {
+  transform: translateX(-50%) rotate(calc(var(--tape-rot, -2deg) - 4deg)) translateY(-3px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -521,6 +996,34 @@ body {
   }
   .flight-rail {
     display: none;
+  }
+  /* the journal opens instantly, no cover choreography */
+  .journal-cover {
+    display: none !important;
+  }
+  html.show-cover {
+    overflow: auto;
+  }
+  .reveal.is-visible .barcode {
+    animation: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .reveal.is-visible .skill-tag,
+  .skill-tag:hover {
+    animation: none;
+  }
+  .ticket-stamp {
+    transition: none;
+  }
+  .ticket:hover .ticket-stamp {
+    scale: 1;
+    rotate: -8deg;
+  }
+  .tape::before,
+  .tape:hover::before {
+    transition: none;
+    transform: translateX(-50%) rotate(var(--tape-rot, -2deg));
   }
   * {
     animation-duration: 0.01ms !important;
