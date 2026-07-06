@@ -16,7 +16,7 @@
   --line: #d2c4a2;
   --sand: #e4d8b8;
   --sage: #55714f;
-  --card: #f9f3e0; /* a fresh page */
+  --card: #fbf6e7; /* a fresh page, a shade lighter than the kraft */
   --tape: rgba(209, 178, 111, 0.45);
   --polaroid: #fffdf4;
 }
@@ -489,14 +489,19 @@ body {
 /* ── Journal cover — the notebook opens when you arrive ────────── */
 /* Hidden by default (no-JS safe). An inline script in the page adds
    .show-cover to <html> before first paint, once per session, never
-   under prefers-reduced-motion. Pure CSS runs the opening; a tiny
-   client component only removes the class afterwards (or on click). */
+   under prefers-reduced-motion. The journal stays closed until the
+   reader taps it; the client component then adds .cover-opening and
+   pure CSS turns the cover plus two paper pages before the overlay
+   is removed. */
 .journal-cover {
   display: none;
   position: fixed;
   inset: 0;
   z-index: 90;
-  perspective: 1500px;
+  perspective: 1800px;
+  /* camera near the spine: the free edge sweeps sideways like a
+     turning page instead of ballooning toward the viewer */
+  perspective-origin: 10% 50%;
 }
 html.show-cover {
   overflow: hidden;
@@ -512,7 +517,34 @@ html.show-cover .journal-cover {
   inset: 0;
   background: #14100a;
   opacity: 0.45;
-  animation: cover-shade 1.5s cubic-bezier(0.72, 0, 0.3, 1) 0.55s forwards;
+}
+html.cover-opening .journal-cover::before {
+  animation: cover-shade 1.2s cubic-bezier(0.72, 0, 0.3, 1) 0.9s forwards;
+}
+/* inner paper pages, bound on the same spine as the cover */
+.cover-page {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(120, 90, 40, 0.06) 1px, transparent 1px) 0 0 / 100% 28px,
+    var(--card);
+  transform-origin: 0% 50%;
+  /* backface stays visible: past 90deg you see the page's back as it
+     lies over to the left, which is what sells the turn */
+  will-change: transform;
+  box-shadow: inset -6px 0 14px rgba(47, 39, 24, 0.08);
+}
+.cover-page::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3.5rem;
+  background: linear-gradient(90deg, rgba(47, 39, 24, 0.22), transparent);
+}
+.cover-page-under {
+  background:
+    linear-gradient(rgba(120, 90, 40, 0.06) 1px, transparent 1px) 0 0 / 100% 28px,
+    var(--bg-elevated);
 }
 .cover-face {
   position: absolute;
@@ -527,7 +559,6 @@ html.show-cover .journal-cover {
   transform-origin: 0% 50%;
   backface-visibility: hidden;
   will-change: transform;
-  animation: cover-open 1.5s cubic-bezier(0.72, 0, 0.3, 1) 0.55s forwards;
 }
 /* spine shading along the bound edge */
 .cover-face::before {
@@ -537,9 +568,25 @@ html.show-cover .journal-cover {
   width: 3.5rem;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent);
 }
+/* the tap: leather first, then each page turns on its own beat */
+html.cover-opening .cover-face {
+  animation: cover-open 1.15s cubic-bezier(0.6, 0.04, 0.3, 1) forwards;
+}
+html.cover-opening .cover-page-top {
+  animation: page-turn 1.1s cubic-bezier(0.5, 0.08, 0.32, 1) 0.45s forwards;
+}
+html.cover-opening .cover-page-under {
+  animation: page-turn 1.1s cubic-bezier(0.5, 0.08, 0.32, 1) 0.9s forwards;
+}
 @keyframes cover-open {
   to {
     transform: rotateY(-106deg);
+  }
+}
+/* a full turn: the page lies all the way over onto the left, off-screen */
+@keyframes page-turn {
+  to {
+    transform: rotateY(-180deg);
   }
 }
 @keyframes cover-shade {
@@ -604,6 +651,16 @@ html.show-cover .journal-cover {
   position: absolute;
   bottom: 1.2rem;
   letter-spacing: 0.22em;
+  animation: cover-hint-pulse 2.4s ease-in-out infinite;
+}
+@keyframes cover-hint-pulse {
+  50% {
+    opacity: 1;
+  }
+}
+html.cover-opening .cover-hint {
+  animation: none;
+  opacity: 0;
 }
 
 /* ── Boarding-pass tickets (flagship projects) ─────────────────── */
@@ -718,7 +775,7 @@ html.show-cover .journal-cover {
   rotate: -4deg;
   opacity: 1;
 }
-/* barcode strip — prints itself left to right on reveal */
+/* barcode strip */
 .barcode {
   height: 2rem;
   color: var(--fg);
@@ -735,14 +792,88 @@ html.show-cover .journal-cover {
     transparent 16px 21px
   );
 }
-.reveal.is-visible .barcode {
-  -webkit-mask-image: linear-gradient(90deg, #000 55%, transparent 65%);
-  mask-image: linear-gradient(90deg, #000 55%, transparent 65%);
-  -webkit-mask-size: 250% 100%;
-  mask-size: 250% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  animation: hand-write 0.8s ease-out 0.35s backwards;
+/* ── Visa stickers (languages) ──────────────────────────────────
+   Each language is an entry permit pasted onto the page: perforated
+   left edge as if peeled from a booklet, colored header band keyed
+   off --band, fluency dots, barcode + serial. The wrapper carries
+   rotation and shadow because the perforation mask would clip a
+   box-shadow painted on the sticker itself. */
+.visa-wrap {
+  height: 100%;
+  rotate: var(--rot, 0deg);
+  filter: drop-shadow(0 3px 8px rgba(47, 39, 24, 0.16));
+  transition: rotate 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.visa-wrap:hover {
+  rotate: 0deg;
+}
+.visa-sticker {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle 5px at 0 11px, transparent 97%, black 100%);
+  -webkit-mask-size: 100% 22px;
+  mask-image: radial-gradient(circle 5px at 0 11px, transparent 97%, black 100%);
+  mask-size: 100% 22px;
+}
+.visa-band {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1.4rem;
+  background: color-mix(in srgb, var(--band, var(--visa)) 24%, var(--card));
+  border-bottom: 1px solid color-mix(in srgb, var(--band, var(--visa)) 40%, transparent);
+  color: var(--band, var(--visa));
+  transition: background 0.25s ease;
+}
+/* pressing the ink again on hover */
+.visa-wrap:hover .visa-band {
+  background: color-mix(in srgb, var(--band, var(--visa)) 34%, var(--card));
+}
+/* the permit type presses onto the band when the page scrolls in */
+@keyframes visa-press {
+  0% {
+    opacity: 0;
+    transform: scale(1.5);
+    filter: blur(1.5px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.96);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.reveal.is-visible .visa-press {
+  animation: visa-press 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 140ms + 0.15s);
+}
+.visa-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--band, var(--visa));
+}
+/* dots ink in one by one, like an officer scoring the permit */
+@keyframes visa-dot {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
+  }
+}
+.reveal.is-visible .visa-dot {
+  animation: visa-dot 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 140ms + var(--d, 0) * 80ms + 0.35s);
 }
 
 /* ── Luggage-tag skill badges ───────────────────────────────────── */
@@ -1004,14 +1135,19 @@ html.show-cover .journal-cover {
   html.show-cover {
     overflow: auto;
   }
-  .reveal.is-visible .barcode {
-    animation: none;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
   .reveal.is-visible .skill-tag,
   .skill-tag:hover {
     animation: none;
+  }
+  .reveal.is-visible .visa-press,
+  .reveal.is-visible .visa-dot {
+    animation: none;
+  }
+  .visa-wrap {
+    transition: none;
+  }
+  .visa-wrap:hover {
+    rotate: var(--rot, 0deg);
   }
   .ticket-stamp {
     transition: none;

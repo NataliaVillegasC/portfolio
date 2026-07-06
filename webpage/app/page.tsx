@@ -5,6 +5,7 @@ import { WorldMap } from '@/components/WorldMap'
 import { EducationExperience } from '@/components/EducationExperience'
 import { Projects } from '@/components/Projects'
 import { Certifications } from '@/components/Certifications'
+import { Languages } from '@/components/Languages'
 import { Community } from '@/components/Community'
 import { Toolbox } from '@/components/Toolbox'
 import { Postcards } from '@/components/Postcards'
@@ -30,6 +31,7 @@ export default function HomePage() {
       <Projects />
       <Washi tint="gold" rotate={1.5} />
       <Certifications />
+      <Languages />
       <Community />
       <Toolbox />
       <Washi tint="blue" rotate={-2} />

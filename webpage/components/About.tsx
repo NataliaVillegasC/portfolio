@@ -51,7 +51,8 @@ export function About() {
               <div>
                 <dt className="text-fg-muted">Education</dt>
                 <dd className="mt-0.5 font-medium">
-                  B.Sc. ×2, Los Andes University · Summa Cum Laude · GPA 4.89/5
+                  B.Sc. Industrial Engineering + B.Sc. Systems &amp; Computing, Los Andes
+                  University · Summa Cum Laude · GPA 4.89/5
                 </dd>
               </div>
               <div>

@@ -22,4 +22,16 @@ export const skills: SkillGroup[] = [
     label: 'Cloud, DevOps & Databases',
     items: ['AWS', 'GCP', 'Firebase', 'Docker', 'Coolify', 'PostgreSQL'],
   },
+  {
+    label: 'Soft skills',
+    items: [
+      'Teamwork & Collaboration',
+      'Problem-solving',
+      'Discipline',
+      'Leadership in international teams',
+      'Adaptability',
+      'Fast learner',
+      'Autonomy',
+    ],
+  },
 ].map((s) => SkillGroupSchema.parse(s))
