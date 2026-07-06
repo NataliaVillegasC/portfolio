@@ -19,7 +19,7 @@ export function Footer() {
       <div className="border-t border-line bg-bg-elevated/60">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <Reveal>
-            <p className="section-kicker font-mono text-xs uppercase tracking-[0.25em] text-accent">
+            <p className="section-kicker font-mono text-base uppercase tracking-[0.25em] text-accent">
               Contact
             </p>
             <div className="postcard mt-8 grid gap-10 p-6 sm:p-10 md:grid-cols-[1.5fr_1fr] md:gap-8">

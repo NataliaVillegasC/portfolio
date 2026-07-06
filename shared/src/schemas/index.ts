@@ -142,6 +142,19 @@ export const CertificationSchema = z.object({
 })
 export type Certification = z.infer<typeof CertificationSchema>
 
+export const HonorSchema = z.object({
+  /** As written in the logbook: a year for Zubiría, month + year for Excellence */
+  date: z.string(),
+  award: z.string(),
+  program: z.string(),
+  detail: z.string(),
+  /** Zubiría (cumulative GPA) rows sit above the dashed rule, Excellence (semester GPA) below */
+  group: z.enum(['zubiria', 'excellence']),
+  /** true → the second engineering program was topped; gets the log's single color accent */
+  highlight: z.boolean(),
+})
+export type Honor = z.infer<typeof HonorSchema>
+
 export const CommunitySchema = z.object({
   org: z.string(),
   role: z.string(),

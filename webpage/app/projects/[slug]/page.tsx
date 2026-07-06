@@ -23,7 +23,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <Reveal>
         <Link
           href="/#projects"
-          className="font-mono text-xs uppercase tracking-[0.2em] text-fg-muted hover:text-accent"
+          className="font-mono text-base uppercase tracking-[0.2em] text-fg-muted hover:text-accent"
         >
           ← All projects
         </Link>

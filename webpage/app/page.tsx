@@ -3,6 +3,7 @@ import { About } from '@/components/About'
 import { Journey } from '@/components/Journey'
 import { WorldMap } from '@/components/WorldMap'
 import { EducationExperience } from '@/components/EducationExperience'
+import { Honors } from '@/components/Honors'
 import { Projects } from '@/components/Projects'
 import { Certifications } from '@/components/Certifications'
 import { Languages } from '@/components/Languages'
@@ -29,6 +30,7 @@ export default function HomePage() {
       <Washi tint="green" rotate={-2.5} />
       <EducationExperience />
       <Projects />
+      <Honors />
       <Washi tint="gold" rotate={1.5} />
       <Certifications />
       <Languages />

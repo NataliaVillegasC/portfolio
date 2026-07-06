@@ -19,6 +19,8 @@
   --card: #fbf6e7; /* a fresh page, a shade lighter than the kraft */
   --tape: rgba(209, 178, 111, 0.45);
   --polaroid: #fffdf4;
+  /* petrol ink, reserved for the honors log's "second degree topped" rows */
+  --honor: #0f6570;
 }
 
 /* Night train — near-black pages, beige dot grid, read by lamplight */
@@ -37,6 +39,7 @@
   --card: #1e1911;
   --tape: rgba(209, 178, 111, 0.28);
   --polaroid: #efe6cd;
+  --honor: #82c8cf;
 }
 
 /* ── Themed scrollbar — a slim ink line down the margin ────────── */
@@ -75,6 +78,7 @@ html {
   --color-sand: var(--sand);
   --color-sage: var(--sage);
   --color-card: var(--card);
+  --color-honor: var(--honor);
 
   --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
   --font-body: 'Courier Prime', 'Courier New', ui-monospace, monospace;
@@ -275,6 +279,31 @@ body {
   border-radius: 12px 26px 12px 12px;
   padding: 1.1rem 1.25rem 1rem 2.1rem;
   transform: rotate(var(--rot, 0deg));
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease-out;
+}
+/* picking a tag up straightens it, like reading the one on your bag */
+.luggage-tag:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow:
+    0 2px 6px rgba(47, 39, 24, 0.1),
+    0 12px 26px rgba(47, 39, 24, 0.12);
+}
+/* tags check in one by one, dropping onto the belt left to right */
+@keyframes tag-checkin {
+  from {
+    opacity: 0;
+    transform: rotate(calc(var(--rot, 0deg) - 4deg)) translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--rot, 0deg)) translateY(0);
+  }
+}
+.reveal.is-visible .luggage-tag {
+  animation: tag-checkin 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 90ms);
 }
 .luggage-tag::before {
   content: '';
@@ -484,6 +513,37 @@ body {
 }
 .paper-lift-alt:hover {
   rotate: -0.5deg;
+}
+
+/* 5. Degree cards press onto the page like entry stamps — left first,
+   right a beat later (--i staggers). Resting tilt rides in on --rot so
+   the landing settles exactly on it; hover straightening then comes
+   from paper-lift's individual rotate, which composes on top. */
+.degree-card {
+  transform: rotate(var(--rot, 0deg));
+}
+@keyframes degree-stamp {
+  0% {
+    opacity: 0;
+    transform: rotate(calc(var(--rot, 0deg) + 3deg)) scale(1.08);
+    filter: blur(1.5px);
+  }
+  60% {
+    opacity: 1;
+    transform: rotate(var(--rot, 0deg)) scale(0.985);
+    filter: blur(0);
+  }
+  80% {
+    transform: rotate(var(--rot, 0deg)) scale(1.008);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(var(--rot, 0deg)) scale(1);
+  }
+}
+.reveal.is-visible .degree-card {
+  animation: degree-stamp 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 160ms);
 }
 
 /* ── Journal cover — the notebook opens when you arrive ────────── */
@@ -1033,6 +1093,20 @@ html.cover-opening .cover-hint {
   animation: tag-swing 0.8s ease-in-out;
 }
 
+/* ── Honors log — ledger entries ink in top to bottom ───────────── */
+@keyframes log-row-ink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.reveal.is-visible .log-row {
+  animation: log-row-ink 0.5s ease backwards;
+  animation-delay: calc(var(--i, 0) * 70ms + 0.2s);
+}
+
 /* ── Washi tape section dividers ────────────────────────────────── */
 .washi-wrap {
   display: flex;
@@ -1218,6 +1292,19 @@ html.cover-opening .cover-hint {
   .reveal.is-visible .visa-press,
   .reveal.is-visible .visa-dot {
     animation: none;
+  }
+  .reveal.is-visible .log-row {
+    animation: none;
+  }
+  .reveal.is-visible .degree-card,
+  .reveal.is-visible .luggage-tag {
+    animation: none;
+  }
+  .luggage-tag {
+    transition: none;
+  }
+  .luggage-tag:hover {
+    transform: rotate(var(--rot, 0deg));
   }
   .visa-wrap {
     transition: none;

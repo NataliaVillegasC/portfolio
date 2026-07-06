@@ -1,4 +1,5 @@
 import { impact } from '@natalia/shared'
+import { CountUp } from './CountUp'
 import { Reveal } from './Reveal'
 
 const degrees = [
@@ -22,7 +23,7 @@ export function DoubleEngineer() {
   return (
     <div className="mt-16">
       <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
+        <p className="font-mono text-base uppercase tracking-[0.25em] text-accent">
           Two degrees, one engineer
         </p>
         <h3 className="mt-3 max-w-2xl font-display text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -34,8 +35,11 @@ export function DoubleEngineer() {
         {degrees.map((d, i) => (
           <Reveal key={d.title}>
             <div
-              className={`h-full rounded-xl border-2 border-dashed bg-card p-7 ${d.ink.split(' ')[1]}`}
-              style={{ transform: `rotate(${i === 0 ? -0.5 : 0.5}deg)` }}
+              className={`degree-card paper-lift ${i === 1 ? 'paper-lift-alt ' : ''}h-full rounded-xl border-2 border-dashed bg-card p-7 ${d.ink.split(' ')[1]}`}
+              style={{
+                ['--rot' as string]: `${i === 0 ? -0.5 : 0.5}deg`,
+                ['--i' as string]: i,
+              }}
             >
               <p
                 className={`font-mono text-[10px] uppercase tracking-[0.2em] ${d.ink.split(' ')[0]}`}
@@ -57,7 +61,7 @@ export function DoubleEngineer() {
       </div>
 
       <Reveal>
-        <p className="font-hand mx-auto mt-8 max-w-xl text-center text-2xl text-fg-muted">
+        <p className="font-hand hand-write mx-auto mt-8 max-w-xl text-center text-2xl text-fg-muted">
           where they meet: I don’t just build systems, I build them to be measurably better.
         </p>
       </Reveal>
@@ -66,8 +70,13 @@ export function DoubleEngineer() {
       <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3">
         {impact.map((stat, i) => (
           <Reveal key={stat.label}>
-            <div className="luggage-tag" style={{ ['--rot' as string]: `${(i % 3) - 1}deg` }}>
-              <p className="font-display text-2xl font-semibold text-accent">{stat.value}</p>
+            <div
+              className="luggage-tag"
+              style={{ ['--rot' as string]: `${(i % 3) - 1}deg`, ['--i' as string]: i }}
+            >
+              <p className="font-display text-2xl font-semibold text-accent">
+                <CountUp value={stat.value} />
+              </p>
               <p className="mt-1 text-sm leading-snug text-fg">{stat.label}</p>
               <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wider text-fg-muted">
                 {stat.source}

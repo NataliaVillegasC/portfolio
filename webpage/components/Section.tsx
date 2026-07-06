@@ -18,7 +18,7 @@ export function Section({
     <section id={id} className={`scroll-mt-24 py-12 sm:py-16 ${className}`}>
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <p className="section-kicker font-mono text-xs uppercase tracking-[0.25em] text-accent">
+          <p className="section-kicker font-mono text-base uppercase tracking-[0.25em] text-accent">
             {kicker}
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
