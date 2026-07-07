@@ -1,5 +1,6 @@
 import { profile } from '@natalia/shared'
 import { asset } from '@/lib/site'
+import { EmailLink } from './EmailLink'
 import { Greeting } from './Greeting'
 import { LocalTime } from './LocalTime'
 import { Reveal } from './Reveal'
@@ -75,12 +76,9 @@ export function Hero() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm">
-            <a
-              href={`mailto:${profile.email}`}
-              className="rounded-full bg-accent px-6 py-3 font-medium text-bg transition-transform hover:-translate-y-0.5"
-            >
+            <EmailLink className="rounded-full bg-accent px-6 py-3 font-medium text-bg transition-transform hover:-translate-y-0.5">
               Say hello
-            </a>
+            </EmailLink>
             <a
               href={profile.linkedin}
               rel="noopener noreferrer"

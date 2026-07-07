@@ -1,10 +1,10 @@
 import { profile } from '@natalia/shared'
 import { cvUrl, resumeUrl } from '@/lib/site'
+import { EmailLink } from './EmailLink'
 import { LocalTime } from './LocalTime'
 import { Reveal } from './Reveal'
 
 const addressLines = [
-  { href: `mailto:${profile.email}`, label: profile.email, external: false },
   { href: profile.github, label: 'GitHub ↗', external: true },
   { href: profile.linkedin, label: 'LinkedIn ↗', external: true },
   { href: cvUrl, label: 'Full CV', external: false },
@@ -64,6 +64,10 @@ export function Footer() {
                   <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-fg-muted">
                     To:
                   </p>
+                  <EmailLink
+                    showAddress
+                    className="block border-b border-dotted border-line py-2 text-sm text-fg-muted transition-colors hover:text-accent"
+                  />
                   {addressLines.map((line) => (
                     <a
                       key={line.label}

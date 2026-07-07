@@ -11,6 +11,9 @@ dist/
 # Generated (regenerated from countries.csv by `npm run gen`)
 shared/src/data/countries.gen.ts
 
+# .MD private files
+EDITING.md
+SKILL.md
 # Env
 .env
 .env.*

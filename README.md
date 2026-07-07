@@ -27,6 +27,8 @@ npm run build        # build all three
 
 ## Editing content — everything lives in `shared/src/data/`
 
+> Full step-by-step owner's manual (every section, images, publishing, image protection): **[EDITING.md](EDITING.md)**. Review workflow for Claude/other models: `.claude/skills/portfolio-review/SKILL.md` (or just ask for a "portfolio review").
+
 - **`countries.csv`** — the world map. Add a row, rebuild, done. `status` is `lived` or `visited`; `map_key` must match the Natural Earth country name (build warns if it doesn't); tiny places get `lat`/`lng` and render as dots.
 - **`profile.ts`** — name, tagline, contacts, greetings, languages, header stats.
 - **`experience.ts` / `education.ts`** — CV facts. `resume: true` puts an entry on the one-pager too.

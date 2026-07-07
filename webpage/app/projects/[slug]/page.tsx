@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { flagshipProjects, profile } from '@natalia/shared'
+import { flagshipProjects } from '@natalia/shared'
+import { EmailLink } from '@/components/EmailLink'
 import { Reveal } from '@/components/Reveal'
 
 export function generateStaticParams() {
@@ -71,9 +72,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
         <p className="mt-10 text-fg-muted">
           Curious about the details?{' '}
-          <a href={`mailto:${profile.email}`} className="text-accent underline underline-offset-4">
+          <EmailLink className="text-accent underline underline-offset-4">
             I’m happy to walk you through it.
-          </a>
+          </EmailLink>
         </p>
       </Reveal>
     </main>

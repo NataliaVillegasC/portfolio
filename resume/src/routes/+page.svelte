@@ -1,5 +1,21 @@
 <script lang="ts">
-  import { profile, education, experience, projects, skills, formatRange } from '@natalia/shared'
+  import { onMount } from 'svelte'
+  import {
+    profile,
+    education,
+    experience,
+    projects,
+    skills,
+    formatRange,
+    buildEmail,
+  } from '@natalia/shared'
+
+  // Assembled in the browser only, so the address never appears in the
+  // prerendered HTML that scrapers harvest. It still prints fine.
+  let email = $state('')
+  onMount(() => {
+    email = buildEmail(profile.emailParts)
+  })
 
   // The one-pager keeps only what a recruiter needs in 30 seconds.
   const work = experience.filter((e) => e.resume)
@@ -21,7 +37,7 @@
     <h1>{profile.name}</h1>
     <p class="entry-sub">{profile.title} · {profile.location.city}, {profile.location.country}</p>
     <div class="contact-row">
-      <a href="mailto:{profile.email}">{profile.email}</a>
+      <a href={email ? `mailto:${email}` : undefined}>{email}</a>
       <a href={profile.linkedin}>linkedin.com/in/{profile.linkedinHandle}</a>
       <a href={profile.github}>github.com/{profile.githubHandle}</a>
     </div>

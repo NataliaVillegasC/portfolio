@@ -30,3 +30,13 @@ export function formatRange(start: string, end: string): string {
 export function yearOf(value: string): number {
   return Number(value.slice(0, 4))
 }
+
+/**
+ * Joins the two email parts into a full address. Call it only from code that
+ * runs in the browser (useEffect / onMount), never during prerender — that
+ * keeps the address out of static HTML and JS bundles where harvesters
+ * regex for email patterns.
+ */
+export function buildEmail(parts: readonly [string, string]): string {
+  return `${parts[0]}@${parts[1]}`
+}

@@ -38,8 +38,8 @@ export const ProfileSchema = z.object({
     timezone: z.string(),
     timezoneLabel: z.string(),
   }),
-  email: z.string().email(),
-  phone: z.string(),
+  /** [user, domain] — join with '@' at runtime only (see buildEmail), never at build time */
+  emailParts: z.tuple([z.string(), z.string()]),
   github: z.string().url(),
   githubHandle: z.string(),
   linkedin: z.string().url(),

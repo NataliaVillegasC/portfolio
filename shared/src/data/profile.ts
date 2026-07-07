@@ -12,8 +12,9 @@ export const profile = ProfileSchema.parse({
     timezone: 'Europe/Prague',
     timezoneLabel: 'CET',
   },
-  email: 'n.villegasc09@gmail.com',
-  phone: '+420 734 547 260',
+  // Stored in two parts so the full address never appears as a single
+  // scrapeable string in source, HTML, or JS bundles. Joined client-side only.
+  emailParts: ['n.villegasc09', 'gmail.com'],
   github: 'https://github.com/NataliaVillegasC',
   githubHandle: 'NataliaVillegasC',
   linkedin: 'https://linkedin.com/in/nataliavc09',
